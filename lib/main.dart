@@ -70,7 +70,6 @@ class _MyHomePageState extends State<MyHomePage> {
     VisionText visionText = await _textRecognizer.processImage(_visionImage);
     var tmp = " ";
     visionText.blocks.forEach((textBlock) {
-      print('-->> ${textBlock.text}');
       tmp = tmp + textBlock.text;
     });
 
@@ -78,13 +77,6 @@ class _MyHomePageState extends State<MyHomePage> {
       _text = tmp;
     });
   }
-
-  @override
-  void initState() {
-    print('is text empty : ${_text.isEmpty}');
-    super.initState();
-  }
-
   @override
   void dispose() {
     _textRecognizer.close();
