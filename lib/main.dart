@@ -77,6 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
       _text = tmp;
     });
   }
+
   @override
   void dispose() {
     _textRecognizer.close();
@@ -94,24 +95,27 @@ class _MyHomePageState extends State<MyHomePage> {
           SliverList(
             delegate: SliverChildListDelegate(
               [
-                SizedBox(height: 100.0),
-                imageLoaded
-                    ? Center(
-                        child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          boxShadow: const [
-                            BoxShadow(blurRadius: 20),
-                          ],
-                        ),
-                        margin: EdgeInsets.fromLTRB(0, 0, 0, 8),
-                        height: 250,
-                        child: Image.file(
-                          pickedImage,
-                          fit: BoxFit.cover,
-                        ),
-                      ))
-                    : Container(),
+                Center(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: const [
+                        BoxShadow(blurRadius: 20),
+                      ],
+                    ),
+                    margin: EdgeInsets.fromLTRB(0, 0, 0, 8),
+                    height: 250,
+                    child: imageLoaded
+                        ? Image.file(
+                            pickedImage,
+                            fit: BoxFit.cover,
+                          )
+                        : Image.asset(
+                            'assets/images/unnamed.jpg',
+                            fit: BoxFit.cover,
+                          ),
+                  ),
+                ),
                 SizedBox(height: 10.0),
                 SizedBox(height: 10.0),
                 Container(
