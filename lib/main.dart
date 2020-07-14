@@ -47,7 +47,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var _text = 'No text yet...';
+  var _text = '';
   File pickedImage;
   bool imageLoaded = false;
   final _picker = ImagePicker();
@@ -74,11 +74,21 @@ class _MyHomePageState extends State<MyHomePage> {
       tmp = tmp + textBlock.text;
     });
 
-    
     setState(() {
       _text = tmp;
-      imageLoaded = false;
     });
+  }
+
+  @override
+  void initState() {
+    print('is text empty : ${_text.isEmpty}');
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _textRecognizer.close();
+    super.dispose();
   }
 
   @override
@@ -87,8 +97,41 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text('Text Recognition'),
       ),
-      body: Center(
-        child: imageLoaded ? CircularProgressIndicator() : Text(_text),
+      body: CustomScrollView(
+        slivers: [
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                SizedBox(height: 100.0),
+                imageLoaded
+                    ? Center(
+                        child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          boxShadow: const [
+                            BoxShadow(blurRadius: 20),
+                          ],
+                        ),
+                        margin: EdgeInsets.fromLTRB(0, 0, 0, 8),
+                        height: 250,
+                        child: Image.file(
+                          pickedImage,
+                          fit: BoxFit.cover,
+                        ),
+                      ))
+                    : Container(),
+                SizedBox(height: 10.0),
+                SizedBox(height: 10.0),
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  child: Text(
+                    _text.isEmpty ? 'No Images selected ' : _text,
+                  ),
+                )
+              ],
+            ),
+          )
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _pickImage,
