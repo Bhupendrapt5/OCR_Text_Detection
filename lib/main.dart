@@ -1,15 +1,10 @@
-import 'dart:io';
-
-import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:text_recognition_flutter/helper/camera_helper.dart';
 import 'package:text_recognition_flutter/povider/image_dectectation_provider.dart';
 import 'package:text_recognition_flutter/povider/text_provider.dart';
 import 'package:text_recognition_flutter/screen/face_detection_screen.dart';
 import 'package:text_recognition_flutter/screen/text_recognition_screen.dart';
-import 'package:text_recognition_flutter/widget/face_painter.dart';
 
 void main() {
   runApp(MyApp());
