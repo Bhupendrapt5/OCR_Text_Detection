@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 class TextProvider with ChangeNotifier {
   String _displayText = '';
@@ -17,10 +18,11 @@ class TextProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void setImage(File imgFile){
+  void setImage(File imgFile) {
     _pickedImage = imgFile;
     notifyListeners();
   }
+
   void decodeText(List<TextBlock> mlText) {
     var tmp = '';
     mlText.forEach((block) {
